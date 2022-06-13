@@ -1,0 +1,784 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Imdb api",
+    "description": "Imdb Api Info"
+  },
+  "host": "localhost:4000",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "Titles"
+    }
+  ],
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes":[
+    "application/json"
+  ],
+  "produces":[
+    "application/json"
+  ],
+  "paths": {
+    "/titles":{
+      "get":{
+        "tags": [
+          "Titles"
+        ],
+        "summary": "Titles",
+        "responses": {
+          "200":{
+            "description": "Ok"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "name": "limit",
+          "in":"query",
+          "description": "Number of titles per page (default: 10) -> 10 max ",
+          "required": false,
+          "type":  "integer"
+          
+        },
+        {
+          "name": "page",
+          "in":"query",
+          "description": "Page number",
+          "required": false,
+          "type":  "integer"
+        },
+        {
+          "name": "info",
+          "in":"query",
+          "description": "Info type structure (default: mini-info) -> base_info / mini_info / image / ...",
+          "required": false,
+          "type":  "string"
+        },
+        {
+          "name": "titleType",
+          "in":"query",
+          "description": "Filter by type of title",
+          "required": false,
+          "type":  "string"
+        },
+        {
+          "name": "year",
+          "in":"query",
+          "description": "Year filter ex: ?year=2020",
+          "required": false,
+          "type":"integer"
+        },
+        {
+          "name": "startYear",
+          "in":"query",
+          "description": "Year range filter -from- ex: ?startYear=2020",
+          "required": false,
+          "type":"integer"
+        },
+        {
+          "name": "endYear",
+          "in":"query",
+          "description": "Year range filter -to- ex: ?endYear=2020",
+          "required": false,
+          "type":"integer"
+        },
+        {
+          "name": "genre",
+          "in":"query",
+          "description": "Year filter ex: ?genre=Drama",
+          "required": false,
+          "type":"string"
+        },
+        {
+          "name": "sort",
+          "in":"query",
+          "description": "Add sorting (incr, decr) -> year.incr /year.decr",
+          "required": false,
+          "type":  "string"
+        },
+        {
+          "name": "list",
+          "in":"query",
+          "description": "Selected list -> most_pop_movies / most_pop_series / top_rated_series_250 / ...",
+          "required": false,
+          "type":  "string"
+        }
+      ]
+    },
+    "/titles/{id}":{
+      "get":{
+        "tags": [
+          "Titles"
+        ],
+        "summary": "Title",
+        "responses": {
+          "200":{
+            "description": "Ok"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "description": "Imdb Id of title ex: tt0000002",
+          "required": true,
+          "type":  "string"
+        },
+        {
+          "name": "info",
+          "in":"query",
+          "description": "Info type structure (default: base-info) -> base_info / mini_info / image / ...",
+          "required": false,
+          "type":  "string"
+        }
+      ]
+    },
+    "/titles/{id}/ratings":{
+      "get":{
+        "tags": [
+          "Titles"
+        ],
+        "summary": "Title Ratings",
+        "responses": {
+          "200":{
+            "description": "Ok"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "description": "Imdb Id of title ex: tt0000002",
+          "required": true,
+          "type":  "string"
+        }
+      ]
+    },
+    "/titles/{id}/main_actors":{
+      "get":{
+        "tags": [
+          "Titles"
+        ],
+        "summary": "Title Main Actors",
+        "responses": {
+          "200":{
+            "description": "Ok"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "description": "Imdb Id of title ex: tt0000002",
+          "required": true,
+          "type":  "string"
+        }
+      ]
+    },
+    "/titles/{id}/crew":{
+      "get":{
+        "tags": [
+          "Titles"
+        ],
+        "summary": "Title crew",
+        "responses": {
+          "200":{
+            "description": "Ok"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "description": "Imdb Id of title ex: tt0000002",
+          "required": true,
+          "type":  "string"
+        }
+      ]
+    },
+    "/titles/{id}/aka":{
+      "get":{
+        "tags": [
+          "Titles"
+        ],
+        "summary": "Title Aka`s",
+        "responses": {
+          "200":{
+            "description": "Ok"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "description": "Imdb Id of title ex: tt0000002",
+          "required": true,
+          "type":  "string"
+        }
+      ]
+    },
+    "/titles/search/title/{title}":{
+      "get":{
+        "tags": [
+          "Search"
+        ],
+        "summary": "Titles by Title",
+        "responses": {
+          "200":{
+            "description": "Ok"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "name": "title",
+          "in": "path",
+          "description": "Title of  the Movie/Series",
+          "required": true,
+          "type":  "string"
+        },
+        {
+          "name": "limit",
+          "in":"query",
+          "description": "Number of titles per page (default: 10) -> 10 max ",
+          "required": false,
+          "type":  "integer"
+          
+        },
+        {
+          "name": "page",
+          "in":"query",
+          "description": "Page number",
+          "required": false,
+          "type":  "integer"
+        },
+        {
+          "name": "info",
+          "in":"query",
+          "description": "Info type structure (default: mini-info) -> base_info / mini_info / image /...",
+          "required": false,
+          "type":  "string"
+        },
+        {
+          "name": "titleType",
+          "in":"query",
+          "description": "Filter by type of title",
+          "required": false,
+          "type":  "string"
+        },
+        {
+          "name": "year",
+          "in":"query",
+          "description": "Year filter ex: ?year=2020",
+          "required": false,
+          "type":"integer"
+        },
+        {
+          "name": "startYear",
+          "in":"query",
+          "description": "Year range filter -from- ex: ?startYear=2020",
+          "required": false,
+          "type":"integer"
+        },
+        {
+          "name": "endYear",
+          "in":"query",
+          "description": "Year range filter -to- ex: ?endYear=2020",
+          "required": false,
+          "type":"integer"
+        },
+        {
+          "name": "sort",
+          "in":"query",
+          "description": "Add sorting (incr, decr) -> year.incr /year.decr",
+          "required": false,
+          "type":  "string"
+        },
+        {
+          "name": "exact",
+          "in":"query",
+          "description": "Search by exact title",
+          "required": false,
+          "type":  "boolean"
+        }
+      ]
+    },
+    "/titles/search/akas/{aka}":{
+      "get":{
+        "tags": [
+          "Search"
+        ],
+        "summary": "Titles by Title",
+        "responses": {
+          "200":{
+            "description": "Ok"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "name": "aka",
+          "in": "path",
+          "description": "Title of  the Movie/Series",
+          "required": true,
+          "type":  "string"
+        },
+        {
+          "name": "limit",
+          "in":"query",
+          "description": "Number of titles per page (default: 10) -> 10 max ",
+          "required": false,
+          "type":  "integer"
+          
+        },
+        {
+          "name": "page",
+          "in":"query",
+          "description": "Page number",
+          "required": false,
+          "type":  "integer"
+        },
+        {
+          "name": "info",
+          "in":"query",
+          "description": "Info type structure (default: mini-info) -> base_info / mini_info / image /...",
+          "required": false,
+          "type":  "string"
+        },
+        {
+          "name": "titleType",
+          "in":"query",
+          "description": "Filter by type of title",
+          "required": false,
+          "type":  "string"
+        },
+        {
+          "name": "year",
+          "in":"query",
+          "description": "Year filter ex: ?year=2020",
+          "required": false,
+          "type":"integer"
+        },
+        {
+          "name": "startYear",
+          "in":"query",
+          "description": "Year range filter -from- ex: ?startYear=2020",
+          "required": false,
+          "type":"integer"
+        },
+        {
+          "name": "endYear",
+          "in":"query",
+          "description": "Year range filter -to- ex: ?endYear=2020",
+          "required": false,
+          "type":"integer"
+        },
+        {
+          "name": "sort",
+          "in":"query",
+          "description": "Add sorting (incr, decr) -> year.incr /year.decr",
+          "required": false,
+          "type":  "string"
+        }
+      ]
+    },
+    "/titles/search/keyword/{keyword}":{
+      "get":{
+        "tags": [
+          "Search"
+        ],
+        "summary": "Title by keyword",
+        "responses": {
+          "200":{
+            "description": "Ok"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "name": "keyword",
+          "in": "path",
+          "description": "Keyword",
+          "required": true,
+          "type":  "string"
+        },
+        {
+          "name": "limit",
+          "in":"query",
+          "description": "Number of titles per page (default: 10) -> 10 max ",
+          "required": false,
+          "type":  "integer"
+          
+        },
+        {
+          "name": "page",
+          "in":"query",
+          "description": "Page number",
+          "required": false,
+          "type":  "integer"
+        },
+        {
+          "name": "info",
+          "in":"query",
+          "description": "Info type structure (default: mini-info) -> base_info / mini_info / image / ...",
+          "required": false,
+          "type":  "string"
+        },
+        {
+          "name": "titleType",
+          "in":"query",
+          "description": "Filter by type of title",
+          "required": false,
+          "type":  "string"
+        },
+        {
+          "name": "year",
+          "in":"query",
+          "description": "Year filter ex: ?year=2020",
+          "required": false,
+          "type":"integer"
+        },
+        {
+          "name": "startYear",
+          "in":"query",
+          "description": "Year range filter -from- ex: ?startYear=2020",
+          "required": false,
+          "type":"integer"
+        },
+        {
+          "name": "endYear",
+          "in":"query",
+          "description": "Year range filter -to- ex: ?endYear=2020",
+          "required": false,
+          "type":"integer"
+        },
+        {
+          "name": "sort",
+          "in":"query",
+          "description": "Add sorting (incr, decr) -> year.incr /year.decr",
+          "required": false,
+          "type":  "string"
+        }
+      ]
+    },
+    "/titles/x/upcoming":{
+      "get":{
+        "tags": [
+          "Titles"
+        ],
+        "summary": "Upcomming Titles",
+        "responses": {
+          "200":{
+            "description": "Ok"
+          }
+        },
+        "parameters": [
+          {
+            "name": "limit",
+            "in":"query",
+            "description": "Number of titles per page (default: 10) -> 10 max ",
+            "required": false,
+            "type":  "integer"
+            
+          },
+          {
+            "name": "page",
+            "in":"query",
+            "description": "Page number",
+            "required": false,
+            "type":  "integer"
+          },
+          {
+            "name": "info",
+            "in":"query",
+            "description": "Info type structure (default: mini-info) -> base_info / mini_info / image / ...",
+            "required": false,
+            "type":  "string"
+          },
+          {
+            "name": "titleType",
+            "in":"query",
+            "description": "Filter by type of title",
+            "required": false,
+            "type":  "string"
+          },
+          {
+            "name": "year",
+            "in":"query",
+            "description": "Year filter ex: ?year=2022",
+            "required": false,
+            "type":"integer"
+          },
+          {
+            "name": "startYear",
+            "in":"query",
+            "description": "Year range filter -from- ex: ?startYear=2020",
+            "required": false,
+            "type":"integer"
+          },
+          {
+            "name": "endYear",
+            "in":"query",
+            "description": "Year range filter -to- ex: ?endYear=2020",
+            "required": false,
+            "type":"integer"
+          },
+          {
+            "name": "genre",
+            "in":"query",
+            "description": "Year filter ex: ?genre=Drama",
+            "required": false,
+            "type":"string"
+          },
+          {
+            "name": "sort",
+            "in":"query",
+            "description": "Add sorting (incr, decr) -> year.incr / year.decr",
+            "required": false,
+            "type":  "string"
+          }
+        ]
+      }
+    },
+    "/titles/x/titles-by-ids":{
+      "get":{
+        "tags": [
+          "Titles"
+        ],
+        "summary": "Titles by List of Id's",
+        "responses": {
+          "200":{
+            "description": "Ok"
+          }
+        },
+        "parameters": [
+          {
+            "name": "info",
+            "in":"query",
+            "description": "Info type structure (default: mini-info) -> base_info / mini_info / image / ...",
+            "required": false,
+            "type":  "string"
+          },
+          {
+            "name": "list",
+            "in":"query",
+            "description": "Selected list -> most_pop_movies / most_pop_series / top_rated_series_250 / ...",
+            "required": false,
+            "type":  "string"
+          },
+          {
+            "name": "idsList",
+            "in":"query",
+            "description": "Imdb id's comma separated -> tt0001702,tt0001856,tt0001856 ...",
+            "required": true,
+            "type":  "array"
+          }
+
+        ]
+      }
+    },
+    "/titles/series/{seriesId}":{
+      "get":{
+        "tags": [
+          "Titles"
+        ],
+        "summary": "Seasons And Episodes",
+        "responses": {
+          "200":{
+            "description": "Ok"
+          }
+        },
+        "parameters": [
+          {
+            "name": "seriesId",
+            "in": "path",
+            "description": "Series Imdb Id",
+            "required": true,
+            "type":  "string"
+          }
+        ]
+      }
+    },
+    "/titles/series/{seriesId}/{season}":{
+      "get":{
+        "tags": [
+          "Titles"
+        ],
+        "summary": "Episodes Id`s By Series Id and Season",
+        "responses": {
+          "200":{
+            "description": "Ok"
+          }
+        },
+        "parameters": [
+          {
+            "name": "seriesId",
+            "in": "path",
+            "description": "Series Imdb Id",
+            "required": true,
+            "type":  "string"
+          },
+          {
+            "name": "season",
+            "in": "path",
+            "description": "Season number",
+            "required": true,
+            "type":  "string"
+          }
+        ]
+      }
+    },
+    "/titles/seasons/{seriesId}":{
+      "get":{
+        "tags": [
+          "Titles"
+        ],
+        "summary": "Seasons Number",
+        "responses": {
+          "200":{
+            "description": "Ok"
+          }
+        },
+        "parameters": [
+          {
+            "name": "seriesId",
+            "in": "path",
+            "description": "Series Imdb Id",
+            "required": true,
+            "type":  "string"
+          }
+        ]
+      }
+    },
+    "/titles/episode/{id}":{
+      "get":{
+        "tags": [
+          "Titles"
+        ],
+        "summary": "Episode",
+        "responses": {
+          "200":{
+            "description": "Ok"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Episode Imdb Id",
+            "required": true,
+            "type":  "string"
+          },
+          {
+            "name": "info",
+            "in":"query",
+            "description": "Info type structure (default: mini-info) -> base_info / mini_info / image / ...",
+            "required": false,
+            "type":  "string"
+          }
+        ]
+      }
+    },
+    "/actors":{
+      "get":{
+        "tags": [
+          "Actors"
+        ],
+        "summary": "Actors",
+        "responses": {
+          "200":{
+            "description": "Ok"
+          }
+        },
+        "parameters": [
+          {
+            "name": "limit",
+            "in":"query",
+            "description": "Number of titles per page (default: 10) -> 10 max ",
+            "required": false,
+            "type":  "integer"
+            
+          },
+          {
+            "name": "page",
+            "in":"query",
+            "description": "Page number",
+            "required": false,
+            "type":  "integer"
+          }
+        ]
+      }
+    },
+    "/actors/{id}":{
+      "get":{
+        "tags": [
+          "Actors"
+        ],
+        "summary": "Actor by Id",
+        "responses": {
+          "200":{
+            "description": "Ok"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in":"path",
+            "description": "Actor imdb id",
+            "required": true,
+            "type":  "string"
+            
+          }
+        ]
+      }
+    },
+    "/titles/utils/genres":{
+      "get":{
+        "tags": [
+          "Utils"
+        ],
+        "summary": "List of Genres",
+        "responses": {
+          "200":{
+            "description": "Ok"
+          }
+        }
+      }
+    },
+    "/titles/utils/titleTypes":{
+      "get":{
+        "tags": [
+          "Utils"
+        ],
+        "summary": "List of titles types",
+        "responses": {
+          "200":{
+            "description": "Ok"
+          }
+        }
+      }
+    },
+    "/titles/utils/lists":{
+      "get":{
+        "tags": [
+          "Utils"
+        ],
+        "summary": "List of movies lists",
+        "responses": {
+          "200":{
+            "description": "Ok"
+          }
+        }
+      }
+    }
+  }
+}
